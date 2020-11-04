@@ -11,8 +11,14 @@ option(JFC_BUILD_TESTS "Build unit tests" OFF)
 
 add_subdirectory(thirdparty)
 
+# GUI
+FIND_PACKAGE(PkgConfig REQUIRED)
+PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
+
+FIND_PACKAGE(CURL REQUIRED)
+
 jfc_project(executable
-    NAME "jfcwanikanireviewsicon"
+    NAME "wanikani_reviews_icon"
     VERSION 0.0
     DESCRIPTION "tray icon indicates reviews"
     C++_STANDARD 17
@@ -20,20 +26,28 @@ jfc_project(executable
 
     PUBLIC_INCLUDE_DIRECTORIES
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-#        ${dependencyname_INCLUDE_DIRECTORIES} 
 
 
     PRIVATE_INCLUDE_DIRECTORIES
         ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+        ${GTK3_INCLUDE_DIRS}
+        ${CURL_INCLUDE_DIR}
 
-#    LIBRARIES
-#        ${dependencyname_LIBRARIES} 
+    LIBRARIES
+        ${GTK3_LIBRARIES}
+        ${CURL_LIBRARIES}
 
     SOURCE_LIST
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/config.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/icon.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/notification.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/request.cpp
 
-#    DEPENDENCIES
-#        "dependencyname"
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-init.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-no_connection.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-reviews_complete.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-reviews_available.cpp
 )
 
 if (JFC_BUILD_TESTS)
