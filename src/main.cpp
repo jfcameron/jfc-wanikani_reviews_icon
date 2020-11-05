@@ -48,8 +48,8 @@ void response_handler(std::vector<unsigned char> output)
         icon::set_graphic(icon::graphic::no_reviews);
     }
 
-    // Notification if review count changed
-    if (review_count != last_review_count) notify::review_count_changed(review_count);
+    // Notification if more reviews have become available
+    if (review_count > last_review_count) notify::review_count_changed(review_count);
 
     last_review_count = review_count;
 }
