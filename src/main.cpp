@@ -102,8 +102,13 @@ int main(int argc, char *argv[])
 
             if (args[1] == "-h" || args[1] == "--help")
             {
-                std::cout << "git hash: " << wanikani_reviews_icon_BuildInfo_Git_Commit 
-                    << ", build date: " << wanikani_reviews_icon_BuildInfo_Git_Date << "\n";
+                std::cout
+                    << "=== " << wanikani_reviews_icon_BuildInfo_ProjectName << " ===" << "\n" 
+                    << "a tray icon application that notifies you of new reviews on your wanikani account.\n"
+                    << "=== build info ===\n"
+                    << "project remote: " << wanikani_reviews_icon_BuildInfo_Git_Remote_URL << "\n"
+                    << "git hash: " << wanikani_reviews_icon_BuildInfo_Git_Commit << "\n"
+                    << "build date: " << wanikani_reviews_icon_BuildInfo_Git_Date << "\n";
             }
         }
     }
