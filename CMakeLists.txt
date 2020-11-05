@@ -50,6 +50,10 @@ jfc_project(executable
         ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-reviews_available.cpp
 )
 
+if (NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+    target_link_libraries(${PROJECT_NAME} stdc++fs)
+endif()
+
 if (JFC_BUILD_TESTS)
     add_subdirectory(test)
 endif()
