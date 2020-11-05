@@ -23,7 +23,6 @@ void response_handler(std::vector<unsigned char> output)
 {
     using namespace nlohmann;
 
-    //TODO: harden parsing
     const json root = json::parse(output);
 
     const auto data = root["data"];
