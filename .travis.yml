@@ -26,10 +26,11 @@ matrix:
         - |
           export CC=/usr/bin/gcc-8
           export CXX=/usr/bin/g++-8
+          git submodule update --init --recursive
           cd workspace
           cmake .. -DJFC_BUILD_DOCS=OFF -DCMAKE_CXX_FLAGS="-pedantic -Wall -Wextra -Ofast -flto -funroll-loops -m64 -march=native -Wno-deprecated-declarations"
-          make
-          ctest --extra-verbose
+          cmake --build .
+          #ctest --extra-verbose
 
 #    - os: osx
 #      name: build macos clang
