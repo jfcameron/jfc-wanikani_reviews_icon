@@ -20,4 +20,4 @@ run the program to generate a config file in `~/.config/wanikani_reviews_icon/co
 
 You can also modify the config file to change what browser is opened when clicking the icon. By default it uses xdg-open to determine which browser to use, but you could change it to directly open "firefox" or whatever you like.
 
-Once you've added your API key, configuration is complete. Set up the program to run in the background when you log into your computer.
+Once you've added your API key, configuration is complete. Move the program somewhere logical like `/usr/bin` and set it up to run in the background when you log into your computer.
