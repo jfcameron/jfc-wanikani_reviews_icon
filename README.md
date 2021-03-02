@@ -2,7 +2,7 @@
 
 ## Wanikani_reviews_icon<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32.png">
 
-Linux tray icon that notifies the user of new reviews on their wanikani account.
+Linux system tray icon that notifies the user of new reviews on their wanikani account.
 
 ### Features:
 - Icon graphic indicates: no reviews<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32-no-reviews.png">, reviews available<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32-reviews.png">, connection issue<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32-no-connection.png">. 
