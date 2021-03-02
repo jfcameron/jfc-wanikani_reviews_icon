@@ -12,11 +12,11 @@ Linux tray icon that notifies the user of new reviews on their wanikani account.
 
 ### Build
 
-refer to .travis.yml file
+refer to `.travis.yml` file
 
 ### Config
 
-run the program to generate a config file in ~/.config/wanikani_reviews_icon/conf.json, then enter your API key in that file.
+run the program to generate a config file in `~/.config/wanikani_reviews_icon/conf.json`, then enter your API key in that file.
 
 You can also modify the config file to change what browser is opened when clicking the icon. By default it uses xdg-open to determine which browser to use, but you could change it to directly open "firefox" or whatever you like.
 
