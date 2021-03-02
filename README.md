@@ -1,11 +1,11 @@
 [![Build Status](https://travis-ci.org/jfcameron/jfc-wanikani_reviews_icon.svg?branch=master)](https://travis-ci.org/jfcameron/jfc-wanikani_reviews_icon)
 
-## Wanikani_reviews_icon<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32.png" width="32px">
+## Wanikani_reviews_icon<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32.png">
 
 Linux tray icon that notifies the user of new reviews on their wanikani account.
 
 ### Features:
-- Icon graphic indicates: no reviews, reviews available, connection issue. <img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32-no-reviews.png">
+- Icon graphic indicates: no reviews<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32-no-reviews.png">, reviews available<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32-reviews.png">, connection issue<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32-no-connection.png">. 
 - Icon tooltip prints the # of reviews available.
 - When the # of reviews changes, a notification appears indicating the new count.
 - Clicking the icon will load the wanikani website in your browser.
