@@ -18,4 +18,6 @@ refer to .travis.yml file
 
 run the program to generate a config file in ~/.config/wanikani_reviews_icon/conf.json, then enter your API key in that file.
 
-You can also modify the config file to change what browser is opened when clicking the icon. The default is to use xdg-open, but it could be changed to "firefox" or whatever you like.
+You can also modify the config file to change what browser is opened when clicking the icon. By default it uses xdg-open to open your default browser, but you could change it to directly open "firefox" or whatever you like.
+
+Once you've added your API key, configuration is complete. Set up the program to run in the background when you log in.
