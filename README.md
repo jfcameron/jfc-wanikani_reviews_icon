@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/jfcameron/jfc-wanikani_reviews_icon.svg?branch=master)](https://travis-ci.org/jfcameron/jfc-wanikani_reviews_icon)
 
-## Wanikani_reviews_icon<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32.png">
+## Wanikani_reviews_icon<img src="https://jfcameron.github.io/jfc-wanikani_reviews_icon/img/wanikani-32.png" width="32px">
 
 Linux tray icon that notifies the user of new reviews on their wanikani account.
 
