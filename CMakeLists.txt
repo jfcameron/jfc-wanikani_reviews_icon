@@ -41,11 +41,13 @@ jfc_project(executable
         ${GTK3_INCLUDE_DIRS}
         ${APPINDICATOR_INCLUDE_DIRS}
         ${jfchttp_INCLUDE_DIRECTORIES}
+        ${jfcstorage_INCLUDE_DIRECTORIES}
 
     LIBRARIES
         ${GTK3_LIBRARIES}
         ${APPINDICATOR_LIBRARIES}
         ${jfchttp_LIBRARIES}
+        ${jfcstorage_LIBRARIES}
 
     SOURCE_LIST
         ${CMAKE_CURRENT_SOURCE_DIR}/src/config.cpp
@@ -58,7 +60,7 @@ jfc_project(executable
         ${CMAKE_CURRENT_SOURCE_DIR}/src/icons.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} jfchttp)
+target_link_libraries(${PROJECT_NAME} jfchttp jfcstorage)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     JFC_APPINDICATOR_HEADER="${JFC_APPINDICATOR_HEADER}")
