@@ -1,0 +1,14 @@
+[Desktop Entry]
+Categories=Education;Languages;
+Comment=Shows how many WaniKani reviews are waiting
+Exec=wanikani_reviews_icon
+GenericName=Review notifier
+Icon=io.github.jfcameron.wanikani_reviews_icon
+Keywords=wanikani;japanese;kanji;reviews;srs;
+Name=WaniKani Reviews
+NoDisplay=false
+StartupNotify=false
+Terminal=false
+Type=Application
+Version=1.0
+X-GNOME-Autostart-enabled=true

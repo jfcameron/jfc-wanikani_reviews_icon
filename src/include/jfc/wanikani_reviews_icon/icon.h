@@ -3,29 +3,24 @@
 #ifndef JFC_WANIKANI_ICON_H
 #define JFC_WANIKANI_ICON_H
 
+#include <cstddef>
+#include <optional>
 #include <string>
 
 /// \brief functions used to manipulate the system tray icon
-///
-/// \warn gtk_init must be called before using any function declared in this namespace
-namespace jfc::wanikani_reviews_icon::icon
-{
-    enum class graphic
-    {
-        init,
+namespace jfc::wanikani_reviews_icon::icon {
+    enum class graphic {
         disconnected,
-        reviews,
-        no_reviews
+        init,
+        no_reviews,
+        reviews
     };
 
     /// \brief changes icon graphic given a number of reviews
     void set_graphic(graphic a);
 
-    /// \brief changes the icon tool tip. 
-    ///
-    /// \note tool tip is displayed when user holds the cursor over the icon
-    void set_tooltip(const std::string &aToolTip);
+    /// \brief show a review count on the icon itself, or nothing when there is none to show
+    void set_badge(std::optional<std::size_t> aCount);
 }
 
 #endif
-

@@ -8,5 +8,8 @@ jfc_generate_documentation_doxygen(
     README_PATH  ../README.md
 
     INCLUDE_DIRECTORIES
-        ../include/
+        ../src/include/
+
+    EXCLUDE_DIRECTORIES
+        ../src/include/nlohmann/
 )

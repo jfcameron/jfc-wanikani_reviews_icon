@@ -9,27 +9,30 @@
 
 using namespace jfc::wanikani_reviews_icon::notify;
 
-static GApplication *pApplication;
+namespace {
+    constexpr const char *APPLICATION_ID = "io.github.jfcameron.wanikani_reviews_icon";
+}
 
+static GApplication *pApplication;
 static GNotification *pNotification;
 
-void static init_once()
-{
+void static init_once() {
     static std::once_flag flag;
 
-    std::call_once(flag, []()
-    {
-        pApplication = []()
-        {
-            auto p = (g_application_new("jfcameron.github.wanikani_reviews_icon", G_APPLICATION_FLAGS_NONE));
+    std::call_once(flag, []() {
+        pApplication = []() {
+#if GLIB_CHECK_VERSION(2, 74, 0)
+            constexpr GApplicationFlags FLAGS = G_APPLICATION_DEFAULT_FLAGS;
+#else
+            constexpr GApplicationFlags FLAGS = G_APPLICATION_FLAGS_NONE;
+#endif
+            auto p = (g_application_new(APPLICATION_ID, FLAGS));
             
             return p ? p : throw std::runtime_error("could not initialize the g_application");
         }();
 
-        pNotification = []()
-        {
-            auto p = (g_notification_new("Build failed"));
-
+        pNotification = []() {
+            auto p = (g_notification_new("WaniKani: new reviews"));
             return p ? p : throw std::runtime_error("could not initialize g_notification");
         }();
 
@@ -39,13 +42,14 @@ void static init_once()
     });
 }
 
-void jfc::wanikani_reviews_icon::notify::review_count_changed(size_t count)
-{
+void jfc::wanikani_reviews_icon::notify::review_count_changed(size_t count) {
     init_once();
 
-    g_notification_set_title(pNotification, "Wanikani: new reviews");
+    g_notification_set_title(pNotification, "WaniKani: new reviews");
 
-    g_notification_set_body(pNotification, std::to_string(count).c_str());
+    const std::string body(std::to_string(count) + (count == 1 ? " review available" : " reviews available"));
+
+    g_notification_set_body(pNotification, body.c_str());
 
     g_application_send_notification(pApplication, "notification", pNotification);
 }
