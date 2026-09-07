@@ -3,7 +3,7 @@
 #include <jfc/catch.hpp>
 #include <jfc/types.h>
 
-#include <jfc/wanikani_reviews_icon/summary.h>
+#include <jfc/wanikani_reviews_icon/request.h>
 
 #include <string>
 #include <vector>
@@ -25,55 +25,56 @@ namespace {
 }
 
 TEST_CASE("a well formed summary reports the number of waiting reviews",
-    "[jfc::wanikani_reviews_icon::summary]") {
+    "[jfc::wanikani_reviews_icon::request]") {
 
-    REQUIRE(summary::review_count(body(summary_with(0))) == 0);
-    REQUIRE(summary::review_count(body(summary_with(1))) == 1);
-    REQUIRE(summary::review_count(body(summary_with(42))) == 42);
-    REQUIRE(summary::review_count(body(summary_with(150))) == 150);
+    REQUIRE(request::review_count(body(summary_with(0))) == 0);
+    REQUIRE(request::review_count(body(summary_with(1))) == 1);
+    REQUIRE(request::review_count(body(summary_with(42))) == 42);
+    REQUIRE(request::review_count(body(summary_with(150))) == 150);
 }
 
 TEST_CASE("a body that cannot be read reports nothing rather than throwing",
-    "[jfc::wanikani_reviews_icon::summary]") {
+    "[jfc::wanikani_reviews_icon::request]") {
 
     SECTION("**not json at all**")
     {
-        REQUIRE_FALSE(summary::review_count(body("not json")));
-        REQUIRE_FALSE(summary::review_count(body("")));
-        REQUIRE_FALSE(summary::review_count(body("<html>401 unauthorized</html>")));
+        REQUIRE_FALSE(request::review_count(body("not json")));
+        REQUIRE_FALSE(request::review_count(body("")));
+        REQUIRE_FALSE(request::review_count(body("<html>401 unauthorized</html>")));
     }
 
     SECTION("**json, but not an object with the fields this program reads**")
     {
-        REQUIRE_FALSE(summary::review_count(body("[]")));
-        REQUIRE_FALSE(summary::review_count(body("{}")));
-        REQUIRE_FALSE(summary::review_count(body(R"({"error":"unauthorized"})")));
-        REQUIRE_FALSE(summary::review_count(body(R"({"data":{}})")));
+        REQUIRE_FALSE(request::review_count(body("[]")));
+        REQUIRE_FALSE(request::review_count(body("{}")));
+        REQUIRE_FALSE(request::review_count(body(R"({"error":"unauthorized"})")));
+        REQUIRE_FALSE(request::review_count(body(R"({"data":{}})")));
     }
 
     SECTION("**the right shape with the wrong types**")
     {
-        REQUIRE_FALSE(summary::review_count(body(R"({"data":{"reviews":"soon"}})")));
-        REQUIRE_FALSE(summary::review_count(body(R"({"data":{"reviews":[{"subject_ids":7}]}})")));
+        REQUIRE_FALSE(request::review_count(body(R"({"data":{"reviews":"soon"}})")));
+        REQUIRE_FALSE(request::review_count(body(R"({"data":{"reviews":[{"subject_ids":7}]}})")));
     }
 
     SECTION("**an empty list of review slots**")
     {
-        REQUIRE_FALSE(summary::review_count(body(R"({"data":{"reviews":[]}})")));
+        REQUIRE_FALSE(request::review_count(body(R"({"data":{"reviews":[]}})")));
     }
 }
 
 TEST_CASE("a truncated body reports nothing rather than reading past its end",
-    "[jfc::wanikani_reviews_icon::summary]") {
+    "[jfc::wanikani_reviews_icon::request]") {
 
     const std::string whole(summary_with(9));
 
     for (std::size_t length = 0; length < whole.size(); ++length)
     {
-        const auto partial = summary::review_count(body(whole.substr(0, length)));
+        const auto partial = request::review_count(body(whole.substr(0, length)));
 
         INFO("truncated to " << length << " of " << whole.size() << " bytes");
 
         REQUIRE_FALSE(partial);
     }
 }
+

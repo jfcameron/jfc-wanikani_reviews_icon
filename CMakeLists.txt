@@ -53,12 +53,9 @@ jfc_project(executable
         ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/notification.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/request.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/summary.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/review_count.cpp
 
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-init.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-no_connection.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-reviews_complete.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/wanikani-32-reviews_available.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/icons.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} jfchttp)

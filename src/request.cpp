@@ -167,4 +167,3 @@ void jfc::wanikani_reviews_icon::request::shutdown() {
     g_pSession->pContext->cancel_all();
     g_pSession.reset();
 }
-

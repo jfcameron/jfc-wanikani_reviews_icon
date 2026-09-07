@@ -4,8 +4,8 @@ jfc_add_tests(
     C_STANDARD 90
 
     TEST_SOURCE_FILES
-        "${CMAKE_CURRENT_LIST_DIR}/summary_test.cpp"
-        "${CMAKE_CURRENT_LIST_DIR}/../src/summary.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/review_count_test.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/../src/review_count.cpp"
 
     INCLUDE_DIRECTORIES
         "${${PROJECT_NAME}_INCLUDE_DIRECTORIES}"

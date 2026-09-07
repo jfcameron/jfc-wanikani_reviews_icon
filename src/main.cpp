@@ -11,11 +11,9 @@
 #include <nlohmann/json.hpp>
 
 #include <jfc/wanikani_reviews_icon/config.h>
-#include <jfc/wanikani_reviews_icon/enums.h>
 #include <jfc/wanikani_reviews_icon/icon.h>
 #include <jfc/wanikani_reviews_icon/notification.h>
 #include <jfc/wanikani_reviews_icon/request.h>
-#include <jfc/wanikani_reviews_icon/summary.h>
 
 #include <wanikani_reviews_icon/buildinfo.h>
 
@@ -54,7 +52,7 @@ namespace {
 }
 
 void response_handler(std::vector<unsigned char> output) {
-    const auto count = summary::review_count(output);
+    const auto count = request::review_count(output);
 
     if (!count) {
         std::cerr << "could not read the summary response\n";

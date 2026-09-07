@@ -1,12 +1,13 @@
 // © 2020 Joseph Cameron - All Rights Reserved
 
-#include <jfc/wanikani_reviews_icon/summary.h>
+#include <jfc/wanikani_reviews_icon/request.h>
 
 #include <nlohmann/json.hpp>
 
 #include <exception>
 
-std::optional<std::size_t> jfc::wanikani_reviews_icon::summary::review_count(const std::vector<unsigned char> &aBody) {
+std::optional<std::size_t> jfc::wanikani_reviews_icon::request::review_count(
+    const jfc::wanikani_reviews_icon::request::response_data_type &aBody) {
     try {
         const nlohmann::json root = nlohmann::json::parse(aBody);
         const auto &reviews = root.at("data").at("reviews");
@@ -23,4 +24,3 @@ std::optional<std::size_t> jfc::wanikani_reviews_icon::summary::review_count(con
         return std::nullopt;
     }
 }
-

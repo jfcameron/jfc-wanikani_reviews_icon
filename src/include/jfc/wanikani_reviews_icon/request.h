@@ -3,9 +3,9 @@
 #ifndef JFC_WANIKANI_REQUEST_H
 #define JFC_WANIKANI_REQUEST_H
 
-#include <jfc/wanikani_reviews_icon/enums.h>
-
+#include <cstddef>
 #include <functional>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -37,6 +37,9 @@ namespace jfc::wanikani_reviews_icon::request
 
     /// \brief abandon anything outstanding and release the worker thread
     void shutdown();
+
+    /// \brief how many reviews the payload says are waiting, or nothing if it cannot be read
+    [[nodiscard]] std::optional<std::size_t> review_count(const response_data_type &aBody);
 }
 
 #endif
