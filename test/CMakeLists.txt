@@ -8,9 +8,6 @@ jfc_add_tests(
         "${CMAKE_CURRENT_LIST_DIR}/../src/review_count.cpp"
 
     INCLUDE_DIRECTORIES
-        "${${PROJECT_NAME}_INCLUDE_DIRECTORIES}"
+        "${CMAKE_CURRENT_LIST_DIR}/../include"
         "${CMAKE_CURRENT_LIST_DIR}/../src/include"
-
-    LIBRARIES
-        "${${PROJECT_NAME}_LIBRARIES}"
 )

@@ -2,7 +2,9 @@
 
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
-project(null)
+project(wanikani_reviews_icon
+    VERSION 0.0
+    DESCRIPTION "tray icon indicates reviews")
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/jfc-cmake/jfclib.cmake")
 
@@ -25,42 +27,31 @@ endif()
 
 message(STATUS "tray: using ${JFC_APPINDICATOR_HEADER}")
 
-jfc_project(executable
-    NAME "wanikani_reviews_icon"
-    VERSION 0.0
-    DESCRIPTION "tray icon indicates reviews"
-    C++_STANDARD 20
-    C_STANDARD 90
+add_executable(wanikani_reviews_icon
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/config.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/icon.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/notification.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/request.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/review_count.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/icons.cpp)
 
-    PUBLIC_INCLUDE_DIRECTORIES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+jfc_generate_cmake_header()
 
+target_include_directories(wanikani_reviews_icon PRIVATE
+    "${PROJECT_BINARY_DIR}/generated_include/"
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+    ${GTK3_INCLUDE_DIRS}
+    ${APPINDICATOR_INCLUDE_DIRS})
 
-    PRIVATE_INCLUDE_DIRECTORIES
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-        ${GTK3_INCLUDE_DIRS}
-        ${APPINDICATOR_INCLUDE_DIRS}
-        ${jfchttp_INCLUDE_DIRECTORIES}
-        ${jfcstorage_INCLUDE_DIRECTORIES}
+target_compile_features(wanikani_reviews_icon PRIVATE cxx_std_20)
 
-    LIBRARIES
-        ${GTK3_LIBRARIES}
-        ${APPINDICATOR_LIBRARIES}
-        ${jfchttp_LIBRARIES}
-        ${jfcstorage_LIBRARIES}
+target_link_libraries(wanikani_reviews_icon PRIVATE
+    ${GTK3_LIBRARIES}
+    ${APPINDICATOR_LIBRARIES})
 
-    SOURCE_LIST
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/config.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/icon.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/notification.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/request.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/review_count.cpp
-
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/icons.cpp
-)
-
-target_link_libraries(${PROJECT_NAME} jfchttp jfcstorage)
+target_link_libraries(${PROJECT_NAME} PRIVATE jfchttp jfcstorage)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     JFC_APPINDICATOR_HEADER="${JFC_APPINDICATOR_HEADER}")
@@ -68,7 +59,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 target_link_directories(${PROJECT_NAME} PRIVATE ${APPINDICATOR_LIBRARY_DIRS})
 
 if (NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
-    target_link_libraries(${PROJECT_NAME} stdc++fs)
+    target_link_libraries(${PROJECT_NAME} PRIVATE stdc++fs)
 endif()
 
 include(GNUInstallDirs)
@@ -91,3 +82,4 @@ endif()
 if (JFC_BUILD_DOCS)
     add_subdirectory(docs)
 endif()
+
